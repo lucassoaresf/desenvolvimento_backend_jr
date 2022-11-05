@@ -1,3 +1,8 @@
+import json
+from loguru import logger
+
+def salvar_database(database):
+    json.dump(database, 'database.json')
 # Cadastro de Pessoas - PROJETO
 
 def lista_cadastro(database):
@@ -22,6 +27,7 @@ while True:
         "2 - Listar os cadastros\n"
         "3 - Deletar um cadastro\n"
         "4 - Alterar um cadastro\n"
+        "5 - Salvar o database\n"
         "0 - Sair do Programa\n"
         "Digite sua opção: "
     ))
@@ -35,16 +41,25 @@ while True:
         database[codigo] = {"nome": nome,
                             "email": email,
                             "data": data}
+        print("\n")
+        logger.success("Cadastro realizado com sucesso!!!")
+
 
     elif option == 2:
         print(" --- LISTAGEM DE CADASTROS --- ")
         lista_cadastro(database)
+        print("\n")
+        logger.info("Listagem finalizada.")
+
 
     elif option == 3:
         print(" --- Selecione o item a ser deletado --- ")
         lista_cadastro(database)
         codigo = int(input("Digite o código a ser deletado: "))
         del database[codigo]
+        print("\n")
+        logger.success("Deletado com sucesso!!!")
+
 
     elif option == 4:
         print(" --- Selecione o item a ser alterado --- ")
@@ -55,6 +70,9 @@ while True:
             "2 - Email\n"
             "3 - Data\n"
             "O que você deseja alterar: "))
+        print("\n")
+        logger.success("Alterações realizadas com sucesso!!!")
+
 
         if op == 1:
             nome = input("Digite o novo nome: ")
@@ -65,6 +83,11 @@ while True:
         if op == 3:
             data = input("Digite o novo data: ")
             database[codigo]['data'] = data
+
+        elif option == 5:
+            salvar_database(database)
+            print("\n")
+            logger.success("Database salva com sucesso!!!")
 
         elif option == 0:
             break
