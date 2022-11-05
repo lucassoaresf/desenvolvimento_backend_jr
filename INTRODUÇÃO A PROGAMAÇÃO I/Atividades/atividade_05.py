@@ -6,12 +6,12 @@ maior_renda = 0.0
 
 with open("filmes.csv", newline='', encoding="utf-8") as f:
     leitor = csv.reader(f)
-    for i in leitor:
-        if i[1] != "Ano de exibição":
-            if maior_renda < float(i[9]):
-                filme = i[2]
-                maior_renda = float(i[9])
+    for linha in leitor:
+        if linha[9] != "Renda (R$) no ano de exibição":
+            if maior_renda < float(linha[9]):
+                maior_renda = float(linha[9])
+                filme = linha[2]
 
 
-print(f"Nome do filme: {filme} e Renda: {maior_renda}")
+print(f"O filme {filme} teve a renda de R${maior_renda}")
 
