@@ -1,8 +1,9 @@
 import csv
 
-lista = []
-filme = ''
+maior_bilheteria = 0
 maior_renda = 0.0
+filme, filme_b = '', ''
+lista_selecionada = []
 
 with open("filmes.csv", newline='', encoding="utf-8") as f:
     leitor = csv.reader(f)
@@ -12,6 +13,11 @@ with open("filmes.csv", newline='', encoding="utf-8") as f:
                 maior_renda = float(linha[9])
                 filme = linha[2]
 
+            if maior_bilheteria < int(float(linha[8])):
+                maior_bilheteria = int(float(linha[8]))
+                filme_b = linha[2]
 
-print(f"O filme {filme} teve a renda de R${maior_renda}")
+
+print(f"O filme {filme} teve a renda de R$ {maior_renda}")
+print(f"O filme {filme_b} teve a bilheteria de {maior_bilheteria}")
 
