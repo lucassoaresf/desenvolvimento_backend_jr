@@ -26,4 +26,3 @@ for index in dl.keys():
         nome_arquivo=index)
 
     print(f"{index}| {dl[index]['lat']} | {dl[index]['lon']}")
-    
