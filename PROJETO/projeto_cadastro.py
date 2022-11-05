@@ -1,9 +1,11 @@
+# Cadastro de Pessoas - PROJETO
+
 import json
 from loguru import logger
 
 def salvar_database(database):
-    json.dump(database, 'database.json')
-# Cadastro de Pessoas - PROJETO
+    with open("arquivo.json", 'w', encoding='utf-8') as f:
+        json.dump(database, f)
 
 def lista_cadastro(database):
     if len(database) == 0:
@@ -84,10 +86,9 @@ while True:
             data = input("Digite o novo data: ")
             database[codigo]['data'] = data
 
-        elif option == 5:
-            salvar_database(database)
-            print("\n")
-            logger.success("Database salva com sucesso!!!")
+    elif option == 5:
+        salvar_database(database)
+        logger.success("Database salva com sucesso!!!")
 
-        elif option == 0:
-            break
+    elif option == 0:
+        break
